@@ -8,7 +8,7 @@
 public class CustomPageMessagesTest {
     
     @istest static void addMessage(){
-        system.assertEquals(0,CustomPageMessages.messages.size());
+        system.assertEquals(0,CustomPageMessages.getSize());
         
         CustomPageMessage message = new CustomPageMessage('Testing environment 1', 'testing', 'info', true, 'alert', 'warning');
         CustomPageMessages.addMessage(message);
@@ -28,13 +28,15 @@ public class CustomPageMessagesTest {
         CustomPageMessage message6 = new CustomPageMessage('Testing environment 6', 'testing', true, 'alert');
         CustomPageMessages.addMessage(message6);
         
+        CustomPageMessage message7 = new CustomPageMessage('Testing environment 7');
+        CustomPageMessages.addMessage(message7);
         
-        system.assertEquals(6,CustomPageMessages.messages.size());
+        system.assertEquals(7,CustomPageMessages.getSize());
     }
     
     @istest static void addMessages(){
         
-        system.assertEquals(0, CustomPageMessages.messages.size());
+        system.assertEquals(0, CustomPageMessages.getSize());
         
         List<CustomPageMessage> messages = new List<CustomPageMessage>{
             new CustomPageMessage('Testing environment 1', 'testing', 'info', true, 'alert', 'warning'),
@@ -44,6 +46,6 @@ public class CustomPageMessagesTest {
                     
         CustomPageMessages.addMessages(messages);
         
-        system.assertEquals(3, CustomPageMessages.messages.size());
+        system.assertEquals(3, CustomPageMessages.getSize());
     }
 }

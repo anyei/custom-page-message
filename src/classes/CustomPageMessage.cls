@@ -1,6 +1,8 @@
 /*
  * Created By : anyei
  * Created Date: 7/28/2017
+ * GitHub : https://github.com/anyei/custom-page-message 
+ * Unit Test : CustomPageMessagesTest
  */
 public class CustomPageMessage {
     public string message {get;set;}
@@ -14,6 +16,10 @@ public class CustomPageMessage {
         messageType = 'alert';
         icon='success';
         theme = 'success';
+    }
+    public CustomPageMessage(string message){
+        this();
+        this.message = message;
     }
     
     public CustomPageMessage(string message, string title, string icon, boolean closeButton, string messageType, string theme){

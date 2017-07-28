@@ -6,7 +6,7 @@ Created Date: 7/28/2017
     <apex:slds />
     <apex:attribute name="rendered" type="boolean" required="false" default="true" description="Show or hide this component" />
     <apex:attribute name="messageMargin" required="false" default="2px" type="string" description="adds margin between messages" />
-    <apex:repeat var="m" value="{!messages}" rendered="{!rendered}">
+    <apex:repeat var="m" value="{!msgs}" rendered="{!rendered}">
         <c:CustomPageMessage theme="{!m.theme}"
                              title="{!m.title}"
                              closeButton="{!m.closeButton}"
