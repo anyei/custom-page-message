@@ -12,6 +12,13 @@ This is a simple way to put messages into visualforce pages both declarative and
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png">
 </a>
 
+
+
+##### Manual Install
+
+You may manually create the classes and visualforce components within your org with the content of this repository CustomPageMessage, CustomPageMessages classes and CustomPageMessage and CustomPageMessages visualforce compoonents, but just use the button above its gonna be easier. 
+
+
 ## Usage
 
 ##### Declarative
@@ -61,10 +68,8 @@ public class dummyController {
 Unfurtunatelly, adding a CustomPageMessage from the controller's constructor does not work, this is because the instance of the instance of <c:CustomPageMessages /> is created by visualforce before calling the constructor of the visualforce controller.
 
 
-##### Manual Install
-
-You may manually create the classes and visualforce components within your org with the content of this repository CustomPageMessage, CustomPageMessages classes and CustomPageMessage and CustomPageMessages visualforce compoonents, but just use the button above its gonna be easier. 
-
+### TODO
+Add more message types, so far only alert has been added.
 
 ### Issues
 Please refer to the <a href="https://github.com/anyei/custom-page-message/issues">Issues</a> section.
