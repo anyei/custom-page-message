@@ -3,16 +3,16 @@
  * Created Date: 7/28/2017
  */ 
 public class CustomPageMessages {
-    public static List<CustomPageMessage> messages {get;set;}
+    static List<CustomPageMessage> msgs {get;set;}
     static{
-        messages = new List<CustomPageMessage>();
+        msgs = new List<CustomPageMessage>();
     }
-    
+    public List<CustomPageMessage> messages {get{return msgs;}}
     public static void addMessage(CustomPageMessage message){
-       if(messages != null) messages.add(message);
+       msgs.add(message);
     }
     public static void addMessages(List<CustomPageMessage> messages){
-        if(CustomPageMessages.messages != null) CustomPageMessages.messages.addAll(messages);
+        msgs.addAll(messages);
     }    
 
 }
