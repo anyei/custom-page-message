@@ -63,6 +63,10 @@ public class dummyController {
 }
 ```
 
+### Important Note
+
+Unfurtunatelly, adding a CustomPageMessage from the controller's constructor does not work, this is because the instance of the instance of <c:CustomPageMessages /> is created by visualforce before calling the constructor of the visualforce controller.
+
 
 ### TODO
 Add more message types, so far only alert has been added.
