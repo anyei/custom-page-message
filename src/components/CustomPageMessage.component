@@ -11,9 +11,9 @@
     <apex:attribute name="rendered" type="boolean" required="false" description="Hide or show the component" default="true" ></apex:attribute>
     <apex:attribute name="messageType" type="string" required="false" description="Change the message type" default="alert" ></apex:attribute>
     <apex:attribute name="theme" type="string" required="false" description="Change the message theme" default="" ></apex:attribute>
-    
+    <apex:attribute name="style" type="string" required="false" description="add style to the top element" default="margin-top:2px"></apex:attribute>
     <apex:outputPanel layout="none" rendered="{!messageType=='alert'}">
-        <div xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture" role="alert">                    
+        <div style="{!style}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture" role="alert">                    
                                 <span class="slds-assistive-text">{!icon}</span>
                                 <h2>
                                     <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--x-small">
