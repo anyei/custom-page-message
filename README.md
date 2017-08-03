@@ -1,4 +1,4 @@
-# sfdc-custom-page-message
+# custom-page-message
 
 This is a simple way to put messages into visualforce pages both declarative and from apex. The interesting thing about this is that it uses slds alert/toast/modal components and not the standard page messages layout and css.
 
@@ -30,6 +30,9 @@ Just create an instance of the component and set some properties, see the follow
 
 <c:CustomPageMessage message="the error"
                          icon="error" />
+                         
+<c:CustomPageMessage message="File attached" sprite="doctype"
+                         icon="attachment" />
 
 
 </apex:page>
@@ -67,20 +70,20 @@ public class dummyController {
 
 | name               | data type        | required | default | description |
 |--------------------|------------------|----------|---------|-------------|
-| title              | string           | false    |         |             |
-| message            | string           | false    |         |             |
-| icon               | string           | false    | success |             |
-| closeButton        | boolean          | false    | true    |             |
-| rendered           | boolean          | false    | true    |             |
-| messageType        | string           | false    | alert   |             |
-| theme              | string           | false    | info    |             |
-| OkButtonLabel      | string           | false    | Okey    |             |
-| CancelButtonLabel  | string           | false    | Cancel  |             |
-| OkButton           | boolean          | false    | true    |             |
-| CancelButton       | boolean          | false    | true    |             |
-| OkButtonAction     | ApexPages.Action | false    |         |             |
-| CancelButtonAction | ApexPages.Action | false    |         |             |
-| sprite             | string           | false    | utility |             |
+| title              | string           | false    |         |The title to be added for those types of messages where theres a title.|
+| message            | string           | false    |         |The message content.|
+| icon               | string           | false    | success |The message icon, it can be one of the ones available in slds sprites. Available values are in this link https://www.lightningdesignsystem.com/icons/ |
+| closeButton        | boolean          | false    | true    |Hide or show the close button for those types of message where there's a close button.|
+| rendered           | boolean          | false    | true    |Hide or show the entire component.|
+| messageType        | string           | false    | alert   |The message type to apply. Available values are alert, simple, toast, modal, modal2.|
+| theme              | string           | false    | info    |The slds theme to apply. Available values are success, info, error, warning.|
+| OkButtonLabel      | string           | false    | Okey    |The label of the ok button for those type of message where there is an ok button.|
+| CancelButtonLabel  | string           | false    | Cancel  |The label of the cancel button for those types of message where there is a cancel button.|
+| OkButton           | boolean          | false    | true    |Hide or show the ok button for those type of message where there is an ok button.|
+| CancelButton       | boolean          | false    | true    |Hide or show the cancel button for those type of messages where there is a cancel button.|
+| OkButtonAction     | ApexPages.Action | false    |         |The controller method to invoke when users click on the ok button.|
+| CancelButtonAction | ApexPages.Action | false    |         |The controller method to invoke when users click on the cancel button.|
+| sprite             | string           | false    | utility |The sprite where the icon you want to use is. Available values are in this link https://www.lightningdesignsystem.com/icons/ but i'm going to resume it for you: action, custom, standard, utility and doctype.|
 
 ### Important Note
 
