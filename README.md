@@ -1,4 +1,4 @@
-# custom-page-message
+# sfdc-custom-page-message
 
 This is a simple way to put messages into visualforce pages both declarative and from apex. The interesting thing about this is that it uses slds alert/toast/modal components and not the standard page messages layout and css.
 
@@ -88,7 +88,7 @@ Unfurtunatelly, adding a CustomPageMessage from the controller's constructor doe
 
 
 ### TODO
-Add more message types, so far only alert has been added.
+Add more message types, so far the message types we have are simple, alert, toast, modal, modal2.
 
 ### Issues
 Please refer to the <a href="https://github.com/anyei/custom-page-message/issues">Issues</a> section.
