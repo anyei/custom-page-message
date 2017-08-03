@@ -31,6 +31,7 @@ public class CustomPageMessagesTest {
         CustomPageMessage message7 = new CustomPageMessage('Testing environment 7');
         CustomPageMessages.addMessage(message7);
         
+        system.assert(message.uniqueId != message7.uniqueId,'Unique id should be different');
         system.assertEquals(7,CustomPageMessages.getSize());
     }
     

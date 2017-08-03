@@ -8,14 +8,29 @@ public class CustomPageMessage {
     public string message {get;set;}
     public string title {get;set;}
     public string icon {get;set;}
+    public string sprite {get;set;}
     public boolean closeButton {get;set;}
     public string messageType {get;set;}//alert, modal, toast
     public string theme {get;set;}//offline, warning, error, success
+    public string uniqueId {get;set;}
+    public boolean okButton {get;set;}
+    public boolean cancelButton {get;set;}
+    public string okButtonLabel {get;set;}
+    public string cancelButtonLabel {get;set;}
+    public ApexPages.Action OkButtonAction {get;set;}
+    public ApexPages.Action CancelButtonAction {get;set;}
     
     public CustomPageMessage(){
         messageType = 'alert';
         icon='success';
         theme = 'success';
+        sprite='utility';
+        closeButton=true;
+        okButton=true;
+        cancelButton=true;
+        okBUttonLabel='Okey';
+        CancelButtonLabel = 'Cancel';
+        uniqueId = '_'+string.valueof(system.datetime.now().getTime());
     }
     public CustomPageMessage(string message){
         this();
@@ -23,6 +38,7 @@ public class CustomPageMessage {
     }
     
     public CustomPageMessage(string message, string title, string icon, boolean closeButton, string messageType, string theme){
+        this();
         this.message = message;
         this.title = title;
         this.icon = icon;

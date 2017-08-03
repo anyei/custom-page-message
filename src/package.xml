@@ -11,5 +11,9 @@
         <members>CustomPageMessages</members>
         <name>ApexComponent</name>
     </types>
+    <types>
+        <members>cpmScripts</members>
+        <name>StaticResource</name>
+    </types>
     <version>39.0</version>
 </Package>

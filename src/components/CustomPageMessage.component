@@ -1,9 +1,9 @@
 <!-- 
 Created By: anyei
 Created Date: 7/28/2017
-GitHub : 
+GitHub : https://github.com/anyei/custom-page-message
 -->
-<apex:component >
+<apex:component controller="CustomPageMessage" >
     <apex:slds />
     <apex:attribute name="title" type="string" required="false" description="The message title" default="" ></apex:attribute>
     <apex:attribute name="message" type="string" required="false" description="The message" default="" ></apex:attribute>
@@ -20,28 +20,17 @@ GitHub :
     <apex:attribute name="CancelButton" type="boolean" required="false" description="Hide or show the ok button" default="true"></apex:attribute>
     <apex:attribute name="OkButtonAction" type="ApexPages.Action" required="false" description="Action to call when ok button is clicked"></apex:attribute>
     <apex:attribute name="CancelButtonAction" type="ApexPages.Action" required="false" description="Action to call when cancel button is clicked"></apex:attribute>
-    <script type="text/javascript">
-    function closeMeJs(suffix)
-    {
-        
-        var target= document.querySelectorAll('.cpmalert.'+suffix);
-        if(target.length > 0) for(var i =0;i<target.length;i++) target[i].setAttribute('style','display:none !important');
-        
-        var b= document.querySelectorAll('.slds-backdrop');
-        if(b.length > 0) for(var i =0;i<b.length;i++) b[i].setAttribute('class','');
-        
-        
-    }
-    </script>
+    <apex:includeScript value="{!$Resource.cpmScripts}" />
+    
     <apex:outputPanel rendered="{!rendered}" layout="none">
         
              <!--rendered="{!messageType=='alert'}" -->
         <apex:outputPanel layout="none">
        
             <apex:outputPanel rendered="{!messageType='alert'}" layout="none">
-                <div style="{!style}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture cpmalert alert" role="alert">                    
+                <div style="{!style}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture cpmalert {!uniqueId}" role="alert">                    
                     <apex:outputPanel layout="none" rendered="{!closeButton}">
-                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('alert');">
+                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                             <svg aria-hidden="true" class="slds-button__icon">
                                 <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                             </svg>
@@ -62,10 +51,10 @@ GitHub :
         <apex:outputPanel layout="none">
               
             <apex:outputPanel rendered="{!messageType='toast'}" layout="none">
-                <div class="slds-notify {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-notify--toast cpmalert toast" role="alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div class="slds-notify {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-notify--toast cpmalert {!uniqueid}" role="alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <span class="slds-assistive-text">Info</span>
                     <apex:outputPanel layout="none" rendered="{!closeButton}">
-                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="closeMeJs('toast')">
+                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="closeMeJs('{!uniqueId}')">
                             <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                                 <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                             </svg>
@@ -86,11 +75,11 @@ GitHub :
         <apex:outputPanel layout="none">
             
             <apex:outputPanel rendered="{!messageType='modal2'}" layout="none">
-                <section  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open cpmalert modal2">
+                <section  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open cpmalert {!uniqueid}">
                     <div class="slds-modal__container">
                         <header class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">
-                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('modal2');">
+                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
                                         <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                                     </svg>
@@ -114,7 +103,7 @@ GitHub :
                         </footer>
                     </div>
                 </section>
-                <div class="slds-backdrop slds-backdrop_open"></div>
+                <div class="slds-backdrop slds-backdrop_open {!uniqueid}"></div>
             </apex:outputPanel>
         </apex:outputPanel>
         
@@ -122,11 +111,11 @@ GitHub :
         <apex:outputPanel layout="none">
               
             <apex:outputPanel rendered="{!messageType='modal'}" layout="none">
-                <div role="alertdialog" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt cpmalert modal">
+                <div role="alertdialog" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt cpmalert {!uniqueid}">
                     <div class="slds-modal__container">
                         <div class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">
-                                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('modal');">
+                                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                                     <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                                         <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                                     </svg>
@@ -152,7 +141,7 @@ GitHub :
                         </div>
                     </div>
                 </div>
-                <div class="slds-backdrop slds-backdrop--open"></div>
+                <div class="slds-backdrop slds-backdrop--open {!uniqueid}"></div>
             </apex:outputPanel>
         </apex:outputPanel>
         
@@ -160,7 +149,7 @@ GitHub :
         <apex:outputPanel layout="none">
             
             <apex:outputPanel rendered="{!messageType='simple'}" layout="none">
-                <div style="{!style}" class="slds-box {!if(isblank(theme) != true,'slds-theme--'+theme,'')} simple" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div style="{!style}" class="slds-box {!if(isblank(theme) != true,'slds-theme--'+theme,'')} {!uniqueid}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <div class="slds-inline_icon_text slds-grid" >
                         <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
                             <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                        </svg>
