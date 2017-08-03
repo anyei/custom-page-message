@@ -63,6 +63,25 @@ public class dummyController {
 }
 ```
 
+### Attributes table
+
+| name               | data type        | required | default | description |
+|--------------------|------------------|----------|---------|-------------|
+| title              | string           | false    |         |             |
+| message            | string           | false    |         |             |
+| icon               | string           | false    | success |             |
+| closeButton        | boolean          | false    | true    |             |
+| rendered           | boolean          | false    | true    |             |
+| messageType        | string           | false    | alert   |             |
+| theme              | string           | false    | info    |             |
+| OkButtonLabel      | string           | false    | Okey    |             |
+| CancelButtonLabel  | string           | false    | Cancel  |             |
+| OkButton           | boolean          | false    | true    |             |
+| CancelButton       | boolean          | false    | true    |             |
+| OkButtonAction     | ApexPages.Action | false    |         |             |
+| CancelButtonAction | ApexPages.Action | false    |         |             |
+| sprite             | string           | false    | utility |             |
+
 ### Important Note
 
 Unfurtunatelly, adding a CustomPageMessage from the controller's constructor does not work, this is because the instance of the instance of <c:CustomPageMessages /> is created by visualforce before calling the constructor of the visualforce controller.
