@@ -51,7 +51,7 @@ GitHub : https://github.com/anyei/custom-page-message
         <apex:outputPanel layout="none">
               
             <apex:outputPanel rendered="{!messageType='toast'}" layout="none">
-                <div class="slds-notify {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-notify--toast cpmalert {!uniqueid}" role="alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div class="slds-notify {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-notify--toast cpmalert {!uniqueid}" role="alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="{!style}">
                     <span class="slds-assistive-text">Info</span>
                     <apex:outputPanel layout="none" rendered="{!closeButton}">
                         <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="closeMeJs('{!uniqueId}')">
@@ -75,7 +75,7 @@ GitHub : https://github.com/anyei/custom-page-message
         <apex:outputPanel layout="none">
             
             <apex:outputPanel rendered="{!messageType='modal2'}" layout="none">
-                <section  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open cpmalert {!uniqueid}">
+                <section  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open cpmalert {!uniqueid}" style="{!style}">
                     <div class="slds-modal__container">
                         <header class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">
@@ -111,7 +111,7 @@ GitHub : https://github.com/anyei/custom-page-message
         <apex:outputPanel layout="none">
               
             <apex:outputPanel rendered="{!messageType='modal'}" layout="none">
-                <div role="alertdialog" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt cpmalert {!uniqueid}">
+                <div role="alertdialog" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt cpmalert {!uniqueid}" style="{!style}">
                     <div class="slds-modal__container">
                         <div class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">

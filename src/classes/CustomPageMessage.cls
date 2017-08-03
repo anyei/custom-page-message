@@ -9,6 +9,7 @@ public class CustomPageMessage {
     public string title {get;set;}
     public string icon {get;set;}
     public string sprite {get;set;}
+    public string style {get;set;}
     public boolean closeButton {get;set;}
     public string messageType {get;set;}//alert, modal, toast
     public string theme {get;set;}//offline, warning, error, success

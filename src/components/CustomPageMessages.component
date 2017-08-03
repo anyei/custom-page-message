@@ -12,6 +12,15 @@ Created Date: 7/28/2017
                              closeButton="{!m.closeButton}"
                              icon="{!m.icon}"
                              message="{!m.message}"
-                             messageType="{!m.messageType}" />
+                             messageType="{!m.messageType}"
+                             OkButton="{!m.OkButton}"
+                             CancelButton="{!m.CancelButton}"
+                             OkButtonLabel="{!m.OkButtonLabel}"
+                             CancelButtonLabel="{!m.CancelButtonLabel}"
+                             OkButtonAction="{!m.OkBUttonAction}"
+                             CancelButtonAction="{!m.CancelButtonAction}"
+                             sprite="{!m.sprite}"
+                             style="{!m.style}"
+                             />
     </apex:repeat>
 </apex:component>
