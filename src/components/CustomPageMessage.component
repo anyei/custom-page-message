@@ -7,7 +7,8 @@ Created Date: 7/28/2017
     <apex:attribute name="title" type="string" required="false" description="The message title" default="" ></apex:attribute>
     <apex:attribute name="message" type="string" required="false" description="The message" default="" ></apex:attribute>
     <apex:attribute name="icon" type="string" required="false" description="The message icon" default="success"></apex:attribute>
-    <apex:attribute name="closeButton" type="boolean" required="false" description="Show or hide the close button" default="false" ></apex:attribute>
+    <apex:attribute name="sprite" type="string" required="false" description="Changes the default sprite for the icon source" default="utility"></apex:attribute>
+    <apex:attribute name="closeButton" type="boolean" required="false" description="Show or hide the close button" default="true" ></apex:attribute>
     <apex:attribute name="rendered" type="boolean" required="false" description="Hide or show the component" default="true" ></apex:attribute>
     <apex:attribute name="messageType" type="string" required="false" description="Change the message type" default="alert" ></apex:attribute>
     <apex:attribute name="theme" type="string" required="false" description="Change the message theme" default="info" ></apex:attribute>
@@ -36,7 +37,7 @@ Created Date: 7/28/2017
             <!--rendered="{!messageType=='alert'}" -->
             <apex:outputPanel rendered="{!messageType='alert'}" layout="none">
                 <div style="{!style}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture cpmalert alert" role="alert">                    
-                    <apex:outputPanel layout="none" rendered="{!closeButton==true}">
+                    <apex:outputPanel layout="none" rendered="{!closeButton}">
                         <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('alert');">
                             <svg aria-hidden="true" class="slds-button__icon">
                                 <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
@@ -47,7 +48,7 @@ Created Date: 7/28/2017
                     <span class="slds-assistive-text">{!icon}</span>
                     <h2>
                         <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--x-small">
-                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#')}{!icon}"></use>
+                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>
                         </svg> <apex:outputTExt value="{!message}" escape="false" />
                     </h2>
                 </div>
@@ -68,8 +69,7 @@ Created Date: 7/28/2017
                         </button></apex:outputPanel>
                     <div class="slds-notify__content slds-grid">
                         <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
-                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#')}{!icon}"></use>
-                        </svg>
+                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                        </svg>
                         <h2 class="slds-text-heading--small"><apex:outputTExt value="{!message}" escape="false" /></h2>
                     </div>
                 </div>
@@ -82,12 +82,13 @@ Created Date: 7/28/2017
                 <section  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open cpmalert modal2">
                     <div class="slds-modal__container">
                         <header class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
-                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('modal2');">
-                                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
-                                </svg>
-                                <span class="slds-assistive-text">Close</span>
-                            </button>
+                            <apex:outputPanel layout="none" rendered="{!closeButton}">
+                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('modal2');">
+                                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Close</span>
+                                </button></apex:outputPanel>
                             <h2 class="slds-text-heading_medium slds-hyphenate">{!title}</h2>
                         </header>
                         <div class="slds-modal__content slds-p-around_medium">
@@ -124,8 +125,7 @@ Created Date: 7/28/2017
                                 </button></apex:outputPanel>
                             <div class="slds-grid">
                                 <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--x-small">
-                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#')}{!icon}"></use>
-                                </svg>
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                                </svg>
                                 <h2 class="slds-text-heading--medium slds-align_absolute-center"> {!title}</h2>  
                             </div>
                             
@@ -152,8 +152,7 @@ Created Date: 7/28/2017
                 <div style="{!style}" class="slds-box {!if(isblank(theme) != true,'slds-theme--'+theme,'')} simple" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <div class="slds-inline_icon_text slds-grid" >
                         <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
-                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#')}{!icon}" ></use>
-                        </svg>
+                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                        </svg>
                         <div class="slds-col slds-align-middle">
                             <apex:outputTExt value="{!message}" escape="false" />
                         </div>
