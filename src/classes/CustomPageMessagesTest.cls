@@ -49,4 +49,13 @@ public class CustomPageMessagesTest {
         
         system.assertEquals(3, CustomPageMessages.getSize());
     }
+    
+    @istest static void getButtonsPanelAction(){
+        CustomPageMessage cpm = new CustomPageMessage();       
+        Component.Apex.OutputPanel op;
+        test.starttest();
+           op= cpm.getButtonsPanelAction();
+        test.stoptest();
+        system.assert(op.childComponents.size() > 0);
+    }
 }
