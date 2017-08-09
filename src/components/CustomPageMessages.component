@@ -1,7 +1,6 @@
 <!-- 
-Created By: anyei
+	Created By: anyei
 Created Date: 7/28/2017
-Github: https://github.com/anyei/custom-page-message
 -->
 <apex:component controller="CustomPageMessages" >
     <apex:slds />
