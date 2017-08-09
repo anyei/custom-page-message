@@ -14,23 +14,53 @@ public class CustomPageMessage {
     public string messageType {get;set;}//alert, modal, toast
     public string theme {get;set;}//offline, warning, error, success
     public string uniqueId {get;set;}
-    public boolean okButton {get;set;}
-    public boolean cancelButton {get;set;}
-    public string okButtonLabel {get;set;}
-    public string cancelButtonLabel {get;set;}
-    public ApexPages.Action OkButtonAction {get;set;}
-    public ApexPages.Action CancelButtonAction {get;set;}
+    public boolean okButtonp {get;set;}
+    public boolean cancelButtonp {get;set;}
+    public string okButtonLabelp {get;set;}
+    public string cancelButtonLabelp {get;set;}
+    public ApexPages.Action OkButtonActionp {get;set;}
+    public ApexPages.Action CancelButtonActionp {get;set; }
+    public boolean renderButtonsFormp {get;set; }
     
+    public Component.Apex.OutputPanel getButtonsPanelAction(){
+
+        Component.Apex.OutPutPanel bp = new Component.Apex.OutputPanel();
+        Component.Apex.Form f = new Component.Apex.Form();
+        if(renderButtonsFormp == true)bp.childComponents.add(f);
+        bp.rendered=okButtonp || cancelButtonp;
+        bp.layout='none';
+        List<Component.Apex.CommandButton> buttonsToShow = new List<Component.Apex.CommandButton>();
+        if(OkButtonp == true){
+            Component.Apex.CommandButton cbOk = new Component.Apex.CommandButton();
+            cbOk.styleClass='slds-button slds-button--brand';
+            cbOk.action = OkButtonActionp;
+            cbOk.value=OkButtonLabelp;
+            buttonsToShow.add(cbOk);
+        }
+        if(CancelButtonp == true){
+             Component.Apex.CommandButton cbCancel = new Component.Apex.CommandButton();
+            cbCancel.styleClass='slds-button slds-button--neutral';
+            cbCancel.action = CancelButtonActionp;
+            cbCancel.value=CancelButtonLabelp;
+            buttonsToShow.add(cbCancel);
+        }
+        
+        for(integer i=(buttonsToShow.size() - 1);i >=0;i--){
+            if(renderButtonsFormp == true) f.childComponents.add(buttonsToShow[i]); else bp.childComponents.add(buttonsToShow[i]);
+        }
+        return bp;
+    }
     public CustomPageMessage(){
         messageType = 'alert';
         icon='success';
         theme = 'success';
         sprite='utility';
         closeButton=true;
-        okButton=true;
-        cancelButton=true;
-        okBUttonLabel='Okey';
-        CancelButtonLabel = 'Cancel';
+        okButtonp=true;
+        cancelButtonp=true;
+        okBUttonLabelp='Okey';
+        CancelButtonLabelp = 'Cancel';
+        renderButtonsFormp = true;
         uniqueId = '_'+string.valueof(system.datetime.now().getTime());
     }
     public CustomPageMessage(string message){

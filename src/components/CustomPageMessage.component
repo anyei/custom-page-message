@@ -14,14 +14,16 @@ GitHub : https://github.com/anyei/custom-page-message
     <apex:attribute name="messageType" type="string" required="false" description="Change the message type" default="alert" ></apex:attribute>
     <apex:attribute name="theme" type="string" required="false" description="Change the message theme" default="info" ></apex:attribute>
     <apex:attribute name="style" type="string" required="false" description="add style to the top element" default="margin-top:2px;margin-bottom:2px"></apex:attribute>
-    <apex:attribute name="OkButtonLabel" type="string" required="false" description="label for okey button" default="Okey"></apex:attribute>
-    <apex:attribute name="CancelButtonLabel" type="string" required="false" description="label for okey button" default="Cancel"></apex:attribute>
-    <apex:attribute name="OkButton" type="boolean" required="false" description="Hide or show the ok button" default="true"></apex:attribute>
+    <apex:attribute name="OkButtonLabel" type="string" assignTo="{!OkButtonLabelp}" required="false" description="label for okey button" default="Okey"></apex:attribute>
+    <apex:attribute name="CancelButtonLabel" assignTo="{!CancelButtonLabelp}" type="string" required="false" description="label for okey button" default="Cancel"></apex:attribute>
+    <apex:attribute name="OkButton" type="boolean" assignTo="{!OkButtonp}" required="false" description="Hide or show the ok button" default="true"></apex:attribute>
     <apex:attribute name="CancelButton" type="boolean" required="false" description="Hide or show the ok button" default="true"></apex:attribute>
-    <apex:attribute name="OkButtonAction" type="ApexPages.Action" required="false" description="Action to call when ok button is clicked"></apex:attribute>
-    <apex:attribute name="CancelButtonAction" type="ApexPages.Action" required="false" description="Action to call when cancel button is clicked"></apex:attribute>
+    <apex:attribute name="OkButtonAction" assignTo="{!OkButtonActionp}" type="ApexPages.Action" required="false" description="Action to call when ok button is clicked"></apex:attribute>
+    <apex:attribute name="CancelButtonAction" assignTo="{!CancelButtonActionp}" type="ApexPages.Action" required="false" description="Action to call when cancel button is clicked"></apex:attribute>
+    <apex:attribute name="renderButtonsForm" assignTo="{!renderButtonsFormp}" type="boolean" required="false" default="false" description="To render an apex form for the action buttons"></apex:attribute>
+
     <apex:includeScript value="{!$Resource.cpmScripts}" />
-    
+  
     <apex:outputPanel rendered="{!rendered}" layout="none">
         
              <!--rendered="{!messageType=='alert'}" -->
@@ -30,12 +32,12 @@ GitHub : https://github.com/anyei/custom-page-message
             <apex:outputPanel rendered="{!messageType='alert'}" layout="none">
                 <div style="{!style}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-notify slds-notify--alert {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture cpmalert {!uniqueId}" role="alert">                    
                     <apex:outputPanel layout="none" rendered="{!closeButton}">
-                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
+                        <a href="javascript:void(0)" class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                             <svg aria-hidden="true" class="slds-button__icon">
                                 <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                             </svg>
                             <span class="slds-assistive-text">Close</span>
-                        </button>
+                        </a>
                     </apex:outputPanel>
                     <span class="slds-assistive-text">{!icon}</span>
                     <h2>
@@ -54,12 +56,12 @@ GitHub : https://github.com/anyei/custom-page-message
                 <div class="slds-notify {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-notify--toast cpmalert {!uniqueid}" role="alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="{!style}">
                     <span class="slds-assistive-text">Info</span>
                     <apex:outputPanel layout="none" rendered="{!closeButton}">
-                        <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="closeMeJs('{!uniqueId}')">
+                        <a href="javascript:void(0)" class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="closeMeJs('{!uniqueId}')">
                             <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                                 <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                             </svg>
                             <span class="slds-assistive-text">Close</span>
-                        </button></apex:outputPanel>
+                        </a></apex:outputPanel>
                     <div class="slds-notify__content slds-grid">
                         <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
                             <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                        </svg>
@@ -79,12 +81,12 @@ GitHub : https://github.com/anyei/custom-page-message
                     <div class="slds-modal__container">
                         <header class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">
-                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
+                                <a href="javascript:void(0)" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
                                         <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                                     </svg>
                                     <span class="slds-assistive-text">Close</span>
-                                </button></apex:outputPanel>
+                                </a></apex:outputPanel>
                             <h2 class="slds-text-heading_medium slds-hyphenate">{!title}</h2>
                         </header>
                         <div class="slds-modal__content slds-p-around_medium">
@@ -92,14 +94,7 @@ GitHub : https://github.com/anyei/custom-page-message
                                 </p>
                         </div>
                         <footer class="slds-modal__footer slds-modal__footer_directional">
-                            <apex:form >
-                                <apex:outputPanel layout="none" rendered="{!CancelButton}">
-                                    <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!CancelButtonAction}" value="{!CancelButtonLabel}"></apex:commandButton>                               
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="none" rendered="{!OkButton}">
-                                    <apex:commandButton styleClass="slds-button slds-button--brand" action="{!OkButtonAction}" value="{!OkButtonLabel}"></apex:commandButton>
-                                </apex:outputPanel>
-                            </apex:form> 
+                            <apex:dynamicComponent id="buttonsSectionModal" invokeAfterAction="true" componentValue="{!ButtonsPanelAction}" />                            
                         </footer>
                     </div>
                 </section>
@@ -115,12 +110,12 @@ GitHub : https://github.com/anyei/custom-page-message
                     <div class="slds-modal__container">
                         <div class="slds-modal__header {!if(isblank(theme) != true,'slds-theme--'+theme,'')} slds-theme--alert-texture">
                             <apex:outputPanel layout="none" rendered="{!closeButton}">
-                                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
+                                <a href="javascript:void(0)" class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="javascript:closeMeJs('{!uniqueId}');">
                                     <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
                                         <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
                                     </svg>
                                     <span class="slds-assistive-text">Close</span>
-                                </button></apex:outputPanel>
+                                </a></apex:outputPanel>
                             <div class="slds-grid">
                                 <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--x-small">
                                     <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/')}{!sprite}-sprite/svg/symbols.svg#{!icon}"></use>                                </svg>
@@ -133,11 +128,7 @@ GitHub : https://github.com/anyei/custom-page-message
                                 </p>
                         </div>
                         <div class="slds-modal__footer slds-theme--default">
-                            <apex:form ><apex:outputPanel layout="none" rendered="{!CancelButton}">
-                                <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!CancelButtonAction}" value="{!CancelButtonLabel}"></apex:commandButton></apex:outputPanel>
-                                <apex:outputPanel layout="none" rendered="{!OkButton}">
-                                    <apex:commandButton styleClass="slds-button slds-button--brand" action="{!OkButtonAction}" value="{!OkButtonLabel}"></apex:commandButton></apex:outputPanel>
-                            </apex:form> 
+                               <apex:dynamicComponent invokeAfterAction="true" id="buttonsSectionModal2" componentValue="{!ButtonsPanelAction}"  />
                         </div>
                     </div>
                 </div>
