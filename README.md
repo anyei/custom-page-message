@@ -83,6 +83,7 @@ public class dummyController {
 | CancelButton       | boolean          | false    | true    |Hide or show the cancel button for those type of messages where there is a cancel button.|
 | OkButtonAction     | ApexPages.Action | false    |         |The controller method to invoke when users click on the ok button.|
 | CancelButtonAction | ApexPages.Action | false    |         |The controller method to invoke when users click on the cancel button.|
+| renderButtonsForm  |boolean           | false    | false   |Renders a <apex:form> for the OkButton and the CancelButton. Set this to true if you put the CustomPageMessage or CustomPageMessages component outside of <apex:form>.|
 | sprite             | string           | false    | utility |The sprite where the icon you want to use is. Available values are in this link https://www.lightningdesignsystem.com/icons/ but i'm going to resume it for you: action, custom, standard, utility and doctype.|
 
 ### Important Note
